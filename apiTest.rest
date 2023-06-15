@@ -1,0 +1,20 @@
+POST /api/login
+Host: localhost:3000
+
+{
+    "username": "imadfen",
+    "password": "imad12345"
+}
+
+
+###
+
+GET /api/rooms
+Host: localhost:3000
+Authorization: bearer eabf30b2-91e0-458f-8df5-cf45cc9b81a4
+
+
+###
+
+GET /api/hello
+Host: localhost:3000

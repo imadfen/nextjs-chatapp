@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id       String     @id @default(uuid())
+  user_name     String
+  user_username String     @unique
+  user_password String
+  messages      Message[]
+  UserRoom      UserRoom[]
+
+  @@index([user_username, user_password])
+}
+
+model Room {
+  room_id  String     @id @default(uuid())
+  Message  Message[]
+  UserRoom UserRoom[]
+}
+
+model Message {
+  message_id        String   @id @default(uuid())
+  message_content   String
+  message_timestamp DateTime
+  sender            User     @relation(fields: [sender_id], references: [user_id])
+  sender_id         String
+  room              Room     @relation(fields: [room_id], references: [room_id])
+  room_id           String
+}
+
+model UserRoom {
+  member User @relation(fields: [member_id], references: [user_id])
+  room   Room @relation(fields: [room_id], references: [room_id])
+
+  member_id String
+  room_id String
+
+  @@id([member_id, room_id])
+}
