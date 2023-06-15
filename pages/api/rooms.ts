@@ -58,8 +58,6 @@ export default async function handler(req: any, res: any) {
                     }
                 })
                 userRoom[i].member_name = memberName?.user_name
-                console.log(userRoom);
-
             }
 
             return res.status(200).json(userRoom)

@@ -54,7 +54,7 @@ function login({ loginAs }: any) {
                 <input type="text" defaultValue={inputVals.username} onChange={(e) => handleChange(e, "username")} name='username' placeholder='username' className='w-3/4 h-10 bg-transparent rounded border border-white outline-none p-2' autoComplete='off' required />
                 <input type="password" name='password' defaultValue={inputVals.password} onChange={(e) => handleChange(e, "password")} placeholder='password' className='w-3/4 h-10 bg-transparent rounded border border-white outline-none p-2' required />
 
-                <input type="submit" value="login" className='w-1/4 p-2 rounded hover:bg-white hover:text-black cursor-pointer' />
+                <input type="submit" value="login" className='w-1/4 p-2 rounded border hover:bg-white hover:text-black cursor-pointer' />
             </form>
         </div>
     )

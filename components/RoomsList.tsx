@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
-function RoomsList({ user }: any) {
+function RoomsList({ user, chooseRoom }: any) {
     const [rooms, setRooms] = useState([])
     const [error, setError] = useState("")
 
@@ -27,7 +27,7 @@ function RoomsList({ user }: any) {
                 <div>
                     {rooms.map((room: any) => {
                         return (
-                            <div className="flex gap-5">
+                            <div className="flex items-center gap-5 cursor-pointer rounded-xl p-5 hover:bg-gray-700" onClick={()=>chooseRoom(room)} key={room.room_id}>
                                 <div style={{width: "50px", height: "50px"}}>
                                     <Image src="/userpic.png" alt="" width={50} height={50}/>
                                 </div>

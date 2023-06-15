@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { io } from 'socket.io-client'
 import Login from '../components/Login'
 import RoomsList from '../components/RoomsList'
+import LogoutButton from '../components/LogoutButton'
+import Return from '../components/Return'
 // const socket = io('http://localhost:5000')
 
 export default function Home() {
@@ -14,7 +16,20 @@ export default function Home() {
                 {!logged ?
                     <Login loginAs={setLogged}/>
                 :
-                    <RoomsList user={logged}/>
+                    <div className='w-full h-full flex flex-col'>
+                        <div className='flex w-full'>
+                            {messageRoom ? <Return closeRoom={()=>setMessageRoom(null)}/> : null}
+                            <LogoutButton logout={()=>setLogged(false)}/>
+                        </div>
+                        <div className='w-full h-full bg-slate-900 rounded-xl p-2 overflow-y-auto'>
+                            {!messageRoom ? 
+                                <RoomsList user={logged} chooseRoom={setMessageRoom}/>
+                            :
+                                null
+                            }
+
+                        </div>
+                    </div>
                 }
             </div>
         </div>
