@@ -1,9 +1,14 @@
 import prisma from "../../utils/prisma"
+import { IncomingMessage } from "http";
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: IncomingMessage, res: any) {
     if (req.method == "GET") {
         var authHeader = req.headers.authorization;
-        authHeader = authHeader.split(" ")[1]
+        if (!authHeader) {
+            return res.status(403).json()
+        }
+
+        authHeader = authHeader?.split(" ")[1]
 
         try {
             const user = await prisma.user.findUnique({
@@ -47,7 +52,12 @@ export default async function handler(req: any, res: any) {
                 },
             });
 
+            if (userRoom.length == 0) {
+                return res.status(200).json([])
+            }
+            
 
+            let roomsList = []
             for (let i = 0; i < userRoom.length; i++) {
                 const memberName = await prisma.user.findFirst({
                     where: {
@@ -57,10 +67,10 @@ export default async function handler(req: any, res: any) {
                         user_name: true
                     }
                 })
-                userRoom[i].member_name = memberName?.user_name
+                roomsList[i] = {...userRoom[i], member_name: memberName?.user_name}
             }
 
-            return res.status(200).json(userRoom)
+            return res.status(200).json(roomsList)
         } catch (error) {
             console.error(error);
             return res.status(500).json({ status: 500 })

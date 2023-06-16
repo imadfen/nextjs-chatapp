@@ -30,7 +30,7 @@ model Room {
 model Message {
   message_id        String   @id @default(uuid())
   message_content   String
-  message_timestamp DateTime
+  message_timestamp DateTime @default(now())
   sender            User     @relation(fields: [sender_id], references: [user_id])
   sender_id         String
   room              Room     @relation(fields: [room_id], references: [room_id])
