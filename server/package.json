@@ -17,6 +17,7 @@
   "dependencies": {
     "@types/react": "^18.2.12",
     "eslint": "^8.42.0",
+    "node-cron": "^3.0.2",
     "typescript": "^5.1.3"
   }
 }
