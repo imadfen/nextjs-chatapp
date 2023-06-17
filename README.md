@@ -3,9 +3,16 @@
 Basic real-time chat application with Next.js and Socket.io
 
 #
-<div align="center">
-   <img src="./chatapp_preview1.gif" alt="preview gif" width="75%" />
-   <img src="./chatapp_preview.gif" alt="preview gif" width="75%" />
+
+<div align="center">      
+   <kbd>
+      <img src="./chatapp_preview1.gif" width="75%"/>
+   </kbd>
+   </br>
+   </br>
+   <kbd>
+      <img src="./chatapp_preview.gif" alt="preview gif" width="75%" />
+   </kbd>
 </div>
 
 
