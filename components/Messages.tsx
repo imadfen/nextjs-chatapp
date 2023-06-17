@@ -1,8 +1,18 @@
 import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react"
 import LoadingSpinner from "./LoadingSpinner"
 
-function Messages({ user, room }: { user: any, room: string }) {
+export interface MessagesRef {
+    fetchMessages: () => void;
+}
+
+interface propsType {
+    user: any,
+    room: string
+  }
+
+
+const Messages = forwardRef<MessagesRef, propsType>((props: propsType, ref: any): JSX.Element => {
     const [messages, setMessages]: any[] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
@@ -16,25 +26,26 @@ function Messages({ user, room }: { user: any, room: string }) {
         }
     });
 
-
     useEffect(() => {
         setLoading(true)
+        fetchMessages()
+    }, [])
 
-        fetch(`/api/${room}`, {
+
+    useImperativeHandle(ref, () => ({
+        fetchMessages
+    }));
+
+
+    const fetchMessages = () => {
+        fetch(`/api/${props.room}`, {
             headers: {
-                Authorization: `Bearer ${user.user_id}`
+                Authorization: `Bearer ${props.user.user_id}`
             }
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-
-                setMessages((prev: {}[]) => {
-                    if (JSON.stringify(data) == JSON.stringify(prev)) {
-                        return data
-                    }
-                    return [...data, ...prev]
-                })
+                setMessages(data)
                 setLoading(false)
             })
             .catch(err => {
@@ -42,7 +53,7 @@ function Messages({ user, room }: { user: any, room: string }) {
                 setLoading(false)
                 setError(true)
             })
-    }, [])
+    }
 
 
     return (
@@ -75,10 +86,12 @@ function Messages({ user, room }: { user: any, room: string }) {
                         )
                     })
                     :
-                    <p className="text-slate-300 text-center font-semibold">no messages yet</p>
+                    !loading ?
+                        <p className="text-slate-300 text-center font-semibold">no messages yet</p>
+                        : null
             }
         </div>
     )
-}
+})
 
 export default Messages

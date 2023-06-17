@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import { io } from 'socket.io-client'
 import Login from '../components/Login'
 import RoomsList from '../components/RoomsList'
 import LogoutButton from '../components/LogoutButton'
 import Return from '../components/Return'
 import RoomName from '../components/RoomName'
 import Room from '../components/Room'
-// const socket = io('http://localhost:5000')
 
 
 export default function Home() {
