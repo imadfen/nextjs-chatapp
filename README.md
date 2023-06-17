@@ -2,6 +2,20 @@
 
 Basic real-time chat application with Next.js and Socket.io
 
+#
+
+<div align="center">      
+   <kbd>
+      <img src="./chatapp_preview1.gif" width="75%"/>
+   </kbd>
+   </br>
+   </br>
+   <kbd>
+      <img src="./chatapp_preview.gif" alt="preview gif" width="75%" />
+   </kbd>
+</div>
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing.
@@ -71,7 +85,7 @@ you need to start both WebSocket server and Next.js application in separate shel
 
 2- Next.js application
 
-    npm start
+    npm dev run
 
 #
 
