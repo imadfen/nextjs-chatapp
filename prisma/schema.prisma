@@ -42,7 +42,7 @@ model UserRoom {
   room   Room @relation(fields: [room_id], references: [room_id])
 
   member_id String
-  room_id String
+  room_id   String
 
   @@id([member_id, room_id])
 }

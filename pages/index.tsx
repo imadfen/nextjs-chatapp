@@ -1,21 +1,22 @@
 import { useState } from 'react'
-import Login from '../components/Login'
 import RoomsList from '../components/RoomsList'
 import LogoutButton from '../components/LogoutButton'
 import Return from '../components/Return'
 import RoomName from '../components/RoomName'
 import Room from '../components/Room'
+import LoginSignup from '../components/LoginSignup'
 
 
 export default function Home() {
     const [logged, setLogged] = useState(false)
     const [messageRoom, setMessageRoom]: any[] = useState(null)
 
+
     return (
         <div className="w-full h-screen bg-gray-100 dark:bg-gray-950 flex justify-center items-center">
             <div className="bg-white dark:bg-slate-800 dark:text-white rounded-md p-5 pt-2 h-[max(90%,35rem)] w-[max(50%,30rem)]">
                 {!logged ?
-                    <Login loginAs={setLogged} />
+                    <LoginSignup loginAs={setLogged} />
                     :
                     <div className='w-full h-full flex flex-col'>
                         <div className='flex w-full items-center h-14 gap-3'>
