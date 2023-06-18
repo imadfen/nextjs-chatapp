@@ -51,7 +51,7 @@ Before starting, make sure you have the following installed on your system:
 #### B- WebSocket deps
 1. Navigate to the WebSocket directory
    ```bash
-   cd WebSocket
+   cd server
    
 2. Install dependencies
    ```bash
@@ -79,11 +79,11 @@ Migrate the database:
 # Start the application
 you need to start both WebSocket server and Next.js application in separate shells:
 
-1- WebSocket server
+1- WebSocket server (in `server` folder)
       
     nodemon server.ts
 
-2- Next.js application
+2- Next.js application (in root folder)
 
     npm dev run
 
